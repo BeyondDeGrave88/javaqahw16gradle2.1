@@ -44,10 +44,10 @@ class OrderTest {
     @Test
     void shouldAcceptOrder() {
         List<WebElement> inputs = driver.findElements(By.cssSelector("input"));
-        inputs.get(0).sendKeys("Иванов Иван");
-        inputs.get(1).sendKeys("+79219876543");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Петров-Иванов");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79219876543");
 
-        driver.findElement(By.cssSelector(".checkbox__box")).click();
+        driver.findElement(By.cssSelector("[data-test-id='agreement'] .checkbox__box")).click();
         driver.findElement(By.cssSelector("button")).click();
 
         WebElement result = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
