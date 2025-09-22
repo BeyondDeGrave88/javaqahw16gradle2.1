@@ -25,7 +25,7 @@ class OrderTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         driver = new ChromeDriver(options);
         driver.get("http://localhost:9999");
     }
@@ -43,12 +43,11 @@ class OrderTest {
 
     @Test
     void shouldAcceptOrder() {
-        List<WebElement> inputs = driver.findElements(By.cssSelector("input"));
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Петров-Иванов");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79219876543");
 
         driver.findElement(By.cssSelector("[data-test-id='agreement'] .checkbox__box")).click();
-        driver.findElement(By.cssSelector("button")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
 
         WebElement result = driver.findElement(By.cssSelector("[data-test-id='order-success']"));
 
